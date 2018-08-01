@@ -1,0 +1,35 @@
+const mysql = require('mysql');
+const pool = mysql.createPool({
+  host: '118.25.66.58',
+  port:'10010',
+  user: 'yinzc',
+  password: 'Yinzc53719.',
+  database: 'testdb1',
+});
+const query = function(sql, values) {
+  return new Promise((resolve, reject) => {
+    pool.getConnection(function(err, connection) {
+      if (err) {
+        reject(err);
+      } else {
+        connection.query(sql, values, (err, rows) => {
+
+          if (err) {
+            reject(err);
+          } else {
+            resolve(rows);
+          }
+          connection.release();
+        });
+      }
+    });
+  });
+};
+
+query.selectAllData = function(sql) {
+  const dataList = query(sql);
+  return dataList;
+};
+
+
+module.exports = query;

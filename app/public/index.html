@@ -1,0 +1,114 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+	    <title>上汽车管家后台管理系统</title>
+        
+           
+           
+               <!--  
+                <link type="text/css" rel="stylesheet" href="/cas/css/cas.css" /> -->
+				<link href="/cas/css/login.css" rel="stylesheet" type="text/css">
+           
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <link rel="icon" href="/cas/favicon.ico" type="image/x-icon" />
+	    	<script type="text/javascript">
+						function upperCase(){
+								var password=document.getElementById("password").value;
+								if(password == '' || password == '请输入密码'){
+										document.getElementById("password").type="text";
+										document.getElementById("password").value="请输入密码";
+								}
+						}
+				</script>
+	</head>
+  
+	<body class="loginBg">
+    <div class="loginHeader">
+	<div class="loginBox1200">
+    	<div class="loginLogo"></div>
+        <div class="loginLanguage">
+        	<span>Languages:</span>
+            <div class="loginLanguageBox">
+            	<p class="loginLanguageInput">中文(简体)</p>
+                <!-- <i></i>
+                            	<ul style="display:block;">
+                            		<li><a>English</a></li>
+                    <li><a>中文 (简体)</a></li>
+                    <li><a>中文 (繁体)</a></li>
+                    
+                            	</ul> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+<div class="loginBanner">
+	<div class="loginMainBox">
+    	<div class="loginBox">
+        	<div class="loginBoxTitle">
+            	<h1>用户登录</h1>				
+          </div>				
+				
+      <div class="loadingMain">			
+      
+      
+         
+			<!-- 表单开始 -->
+			<form id="fm1" action="" method="post">
+				<div class="loadingError">
+					
+				<span style="color:red;font-weight:900"></span>		 
+       </div>
+            <div class="loadingInput">
+                <dl>
+                    <dt>用户名</dt>
+                    <dd><div><input type="text" name="username" id="username" onblur="if(this.value == '')this.value='请输入用户名';" onclick="if(this.value == '请输入用户名')this.value='';" value="请输入用户名"><i class="usernameIcon"></i></div></dd>
+                </dl>
+            </div>
+            <div class="loadingInput">
+                <dl>
+                    <dt>密&nbsp;&nbsp;&nbsp;码</dt>
+                    <dd><div><input type="text" name="password" id="password" onblur="upperCase()" onfocus="if(this.value == '请输入密码')this.value='';this.type='password';" value="请输入密码"><i class="passwordIcon"></i></div></dd>
+                </dl>
+            </div>
+            <div class="loadingBtn">
+            	<input type="hidden" name="lt" value="LT-6010-P5pudBknriPQYPAOgFLOnkOqDVc4Pf" />
+				<input type="hidden" name="execution" value="e2s1" />
+				<input type="hidden" name="_eventId" value="submit" />				
+				<!-- <input class="loadingBtnLoad" name="submit" value="登录" tabindex="4" type="submit" />
+				<input class="loadingBtnReset" name="reset" accesskey="c" value="重置" tabindex="5" type="reset" /> -->				
+				<a href="#" onclick="document.getElementById('fm1').submit();" tabindex="4" class="loadingBtnLoad">登录</a>
+				<a href="#" onclick="document.getElementById('fm1').reset();" class="loadingBtnReset">重置</a>
+            </div>
+			</form>
+            <div class="loginBoxBottom">
+            	<p>出于安全考虑，一旦您访问过那些需要您提供凭证信息的应用时，
+请操作完成之后关闭浏览器。</p>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="loginFooter">
+	<div class="loginBox1200">
+    	<div class="loginFooterText">
+        	<p>版权所有 © 2016 - 2100 斑马信息科技有限公司 保留所有权利</p>
+            <p>Powered by 上汽云平台</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
