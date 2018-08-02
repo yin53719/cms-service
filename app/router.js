@@ -27,7 +27,7 @@ module.exports = app => {
   app.get('/api/cmyManage/sys/ue/upload','uploadUe.index');
   app.post('/api/upload/ue','uploadUe.image');
   app.post('/api/cmyManage/sys/uploadFile','uploadUe.image');
-
+  app.post('/api/cmyManage/sys/ue/upload','uploadUe.image');
   
 
   //论坛路由

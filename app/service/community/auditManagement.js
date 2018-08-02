@@ -2,16 +2,29 @@
 module.exports = app => {
   class auditManagementService extends app.Service {
     async getAuditInfoList(data){
-        let name = data.name?`and (u.name LIKE '%${name}%' or u.nick_name like '%${name}%')`:'';
-        let title = data.title || '';
+        let name = data.name?`and (u.name LIKE '%${data.name}%' or u.nick_name like '%${data.name}%')`:'';
+        let releaseType=''
+        if(data.releaseType){
+            if(data.releaseType=='10070'){
+                releaseType = `and t.business_type=1007 and t.level=0`;
+            }else if(data.releaseType=='10071'){
+                releaseType = `and t.business_type=1007 and t.level=1`;
+            }else if(data.releaseType=='10072'){
+                releaseType = `and t.business_type=1007 and t.level=2`;
+            }else if(data.releaseType=='10041'){
+                releaseType = `and t.business_type=1004 and t.level=1`;
+            }else if(data.releaseType=='10042'){
+                releaseType = `and t.business_type=1004 and t.level=2`;
+            }
+        }
+        
+        
         let page=data.page-1 || 0 ;
         let limit=data.limit || 10;
-        let blockId = data.blockId ?`and t.block_id=${data.blockId}`: '';
-        let publishStatus = data.publishStatus?`and t.publish_status=${data.publishStatus}` :''
-        let publishDate = data.startDate?`and t.publish_date > '${data.startDate}' and t.publish_date < '${data.endDate}'`:'';
-        let superStatus = data.superStatus?`and t.super_status=${data.superStatus}`:'';
-        let topStatus = data.topStatus?`and t.top_status=${data.topStatus}`:'';
-
+        let businessType = data.businessType ?`and t.business_type = ${data.businessType}`: '';
+        let status = data.status?`and t.status = ${data.status}`:'';
+        let audit_time = data.auditStartDate?`and t.audit_start_date > '${data.auditStartDate}' and t.audit_end_date < '${data.auditEndDate}'`:'';
+        let create_time = data.startDate?`and t.create_time > '${data.startDate}' and t.create_time < '${data.endDate}'`:'';
         let sql =`SELECT
                     t.id id,
                     t.business_id businessId,
@@ -66,6 +79,8 @@ module.exports = app => {
                         tt_community_comment tcc 
                     ) AS t
                 LEFT JOIN user_account u ON t.user_id = u.saic_user_id
+                WHERE 1=1 ${name} ${releaseType} ${businessType} ${status} ${audit_time} ${create_time}
+                order by t.STATUS ASC,t.audit_time desc,t.create_time DESC
                 LIMIT ${page},${limit}`
         let rows =[];
         try {
@@ -110,6 +125,8 @@ module.exports = app => {
                         FROM
                             tt_community_comment tcc 
                         ) AS t
+                        LEFT JOIN user_account u ON t.user_id = u.saic_user_id
+                        WHERE 1=1 ${name} ${releaseType} ${businessType} ${status} ${audit_time} ${create_time}
                     `;
         let total =[];
         try {

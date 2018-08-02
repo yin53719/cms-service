@@ -19,7 +19,7 @@ module.exports = app => {
       });
       
       let mailOptions = {
-        from: '"JavaScript之禅" <170474051@qq.com>', // sender address
+        from: '"系统管理员" <170474051@qq.com>', // sender address
         to: data.to, // list of receivers
         subject: data.subject, // Subject line
         // 发送text或者html格式
