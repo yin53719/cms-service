@@ -147,6 +147,12 @@ module.exports = app => {
     async getAuditTypeList(){
         
     }
+    async queryAuditingDetailList(query){
+        if(query.businessType==1007){
+            let sql=``;
+
+        }
+    }
   }
   return auditManagementService;
 };

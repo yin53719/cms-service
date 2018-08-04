@@ -17,6 +17,11 @@ module.exports = app => {
       const body=await ctx.service.community.forum.queryListArticle(ctx.request.body);
       ctx.body=body;
     } 
+    async queryDetailArticleApp(ctx){
+      //查询板块下面帖子明细
+      const body=await ctx.service.community.forum.queryDetailArticleApp(ctx.query);
+      ctx.body=body;
+    }
   }
   return forumController;
 };

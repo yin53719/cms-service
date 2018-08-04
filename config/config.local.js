@@ -21,16 +21,15 @@ module.exports = appInfo => {
   config.mysql={
     // database configuration
     client: {
-      // host:'118.25.66.58',
-      host: '58.248.224.12',
-       port:'30143',
-      //port: '10010',
+       host:'118.25.66.58',
+      //host: '58.248.224.12',
+       //port:'30143',
+      port: '10010',
 
-      // username
-      user:'root',
-      //user: 'yinzc',
-       password:'123456',
-     // password: 'Yinzc53719.',
+      //user:'root',
+      user: 'yinzc',
+     //  password:'123456',
+      password: 'Yinzc53719.',
       // database
       database: 'bbs_community',
     },

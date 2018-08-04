@@ -39,8 +39,8 @@ module.exports = app => {
   //官方发布号以及用户
   require('./router/auditManagement')(app);
 
-
-
+  app.get('/api/community/comment/web/queryCommentList','community.comment.web');
+  
 
 
   

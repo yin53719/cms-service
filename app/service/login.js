@@ -17,7 +17,7 @@ module.exports = app => {
           if (result.password!=password) {
               body={msg:'密码不正确',status:401};
           }else {
-              const token = app.jwt.sign({ user_id: result.user_id }, app.config.jwt.secret,{ expiresIn: 30 * 60 });
+              const token = app.jwt.sign({ user_id: result.user_id }, app.config.jwt.secret,{ expiresIn: 30 * 60*1000 });
               result['token']=token;
               result['roles']=['admin'];
               body=result;

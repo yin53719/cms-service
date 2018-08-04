@@ -12,11 +12,11 @@ module.exports = app => {
       const body=await ctx.service.community.auditManagement.getAuditTypeList(ctx.query.id);
       ctx.body=body;
     }
-    async queryListArticle(ctx){
-      //查询板块下面帖子列表
-      const body=await ctx.service.community.forum.queryListArticle(ctx.request.body);
+    async queryAuditingDetailList(ctx){
+      //查询审核明细
+      const body=await ctx.service.community.auditManagement.queryAuditingDetailList(ctx.query);
       ctx.body=body;
-    } 
+    }
   }
   return auditManagementController;
 };

@@ -17,7 +17,7 @@ module.exports = app => {
         let endDate = data.registerEndDate?`and a.register_date < '${data.registerEndDate}' `:''; 
         let lastLoginStartDate = data.lastLoginStartDate?`and a.last_login_date >'${data.lastLoginStartDate}' `:''; 
         let lastLoginEndDate = data.lastLoginEndDate?`and a.last_login_date < '${data.lastLoginEndDate}' `:''; 
-        let sql=`SELECT a.nick_name as nickName,id,a.saic_user_id as saicUserId b.article_role_code as articleRoleCode
+        let sql=`SELECT a.nick_name as nickName,id,a.saic_user_id as saicUserId,b.article_role_code as articleRoleCode
                 FROM user_account as a LEFT JOIN tr_block_role b ON a.saic_user_id = b.user_id
                 where ${articleRoleCode} ${startDate} ${endDate} ${lastLoginStartDate} ${lastLoginEndDate}
                 limit ${page},${limit}`

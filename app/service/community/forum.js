@@ -66,6 +66,15 @@ module.exports = app => {
             
         };
     }
+    async queryDetailArticleApp(query){
+
+        let data  = await app.mysql.get('tt_community_article',{id:query.id});
+
+
+       return {
+           data:data
+       }
+    }
   }
   return forumService;
 };
