@@ -41,6 +41,7 @@ module.exports = app => {
         let rows =[];
         try {
             rows= await this.app.mysql.query(sql);
+            app.logger.info(rows);
         } catch (error) {
             app.logger.error(error)
         }finally{

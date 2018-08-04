@@ -85,10 +85,10 @@ module.exports = app => {
         let rows =[];
         try {
             rows= await this.app.mysql.query(sql);
+            app.logger.info(rows);
         } catch (error) {
             app.logger.error(error)
-        }finally{
-            app.logger.info(sql)
+            app.logger.error(sql)
         }
         let sql2 = `SELECT
                       count(0) as total
@@ -131,18 +131,20 @@ module.exports = app => {
         let total =[];
         try {
             total= await this.app.mysql.query(sql2);
+
+            return {
+                data:{
+                    rows:rows,
+                    total:total[0].total
+                }
+                
+            };
         } catch (error) {
             app.logger.error(error)
         }finally{
             app.logger.info(sql2)
         }
-        return {
-            data:{
-                rows:rows,
-                total:total[0].total
-            }
-            
-        };
+        
     }
     async getAuditTypeList(){
         

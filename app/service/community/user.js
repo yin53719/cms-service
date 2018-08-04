@@ -4,10 +4,19 @@ module.exports = app => {
     async findOfficialUser(data) {
         let userPublishType=data.userPublishType || '';
          let sql=`SELECT a.nick_name as nickName,id,a.saic_user_id as saicUserId FROM user_account as a  WHERE a.user_type in(${userPublishType},0) `
-         let rows= await this.app.mysql.query(sql);
-        return {
+         let rows= new Array();
+         try {
+            rows= await this.app.mysql.query(sql);
+            app.logger.info(rows);
+          } catch (error) {
+            app.logger.error('查询用户信息报错.....');
+            app.logger.error(error);
+          }finally{
+            app.logger.info(sql)
+          }
+          return {
             data:rows
-        };
+          };
     }
     async getListUser(data) {
         let articleRoleCode=data.articleRoleCode?`and ${data.articleRoleCode}`:'';
@@ -21,21 +30,25 @@ module.exports = app => {
                 FROM user_account as a LEFT JOIN tr_block_role b ON a.saic_user_id = b.user_id
                 where ${articleRoleCode} ${startDate} ${endDate} ${lastLoginStartDate} ${lastLoginEndDate}
                 limit ${page},${limit}`
-        let rows= [];
+        let rows= new Array();
         try {
           rows= await this.app.mysql.query(sql);
-        } catch (error) {
-          app.logger.error(error);
-        }finally{
-          app.logger.info(sql);
-        }
+          app.logger.info(rows)
+          app.logger.info(sql)
+          return {
+              data:{
+                rows:rows,
+                total:100
+              }
+          };
+         
 
-      return {
-          data:{
-            rows:rows,
-            total:100
-          }
-      };
+        } catch (error) {
+          app.logger.error('查询用户信息报错.....');
+          app.logger.error(error);
+          app.logger.info(sql)
+        }
+      
   }
   }
   return userService;

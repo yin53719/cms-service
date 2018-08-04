@@ -5,7 +5,7 @@ module.exports = app => {
     async queryListNews(data) {
         let title=data.title || '';
         let page=data.page-1 || 0 ;
-        let limit=data.limit;
+        let limit=data.limit || 10;
         let userId = data.userId?`and a.user_id =${data.userId} `:''; 
         let startDate = data.startDate?`and a.start_date >'${data.startDate}' `:''; 
         let endDate = data.endDate?`and a.end_date < '${data.endDate}' `:''; 
@@ -16,26 +16,39 @@ module.exports = app => {
                   ,a.is_show isShow,a.is_fullpush isFullpush
                   FROM tt_community_news as a LEFT JOIN user_account b ON b.saic_user_id =a.user_id WHERE 
                   a.title LIKE '%${title}%' ${startDate } ${endDate } ${isShow } ${userId} ${status} LIMIT ${page},${limit}`
-         let rows= await app.mysql.query(sql);
-
-         for(var i=0;i<rows.length;i++){
-            rows[i].releaseDate=common.formatDateAll(rows[i].releaseDate);
+        let rows= new Array();
+                 
+         try {
+             rows= await app.mysql.query(sql);
+             for(var i=0;i<rows.length;i++){
+                rows[i].releaseDate=common.formatDateAll(rows[i].releaseDate);
+             }
+             app.logger.info(rows);
+             app.logger.error(sql);
+         } catch (error) {
+            app.logger.error('查询用户信息报错.....');
+            app.logger.error(error);
+            app.logger.error(sql);
          }
-
-         app.logger.info(sql);
-         
          let sql2 = `SELECT count(0)
                     FROM tt_community_news as a WHERE 
                     a.title LIKE '%${title}%' ${startDate } ${endDate } ${isShow } ${userId} ${status} `
-         let total = await app.mysql.query(sql2);
+        
+        try {
+            let total = await app.mysql.query(sql2);
+            return {
+                data:{
+                    rows:rows,
+                    total:total[0].total
+                }
+                
+            };
+        } catch (error) {
+            app.logger.error(error)
+        }
+                    
 
-        return {
-            data:{
-                rows:rows,
-                total:total[0].total
-            }
-            
-        };
+        
   
     }
     async queryListNewsOne(id){
