@@ -9,7 +9,8 @@ module.exports = app => {
         const body=await ctx.service.community.news.queryListNewsOne(ctx.query.id);
         ctx.body=body;
       }else{
-        const body=await ctx.service.community.news.queryListNews(ctx.request.body);
+        //const body=await ctx.service.community.news.queryListNews(ctx.request.body);
+        const body=await ctx.service.community.newsMong.queryListNews(ctx.request.body);
         ctx.body=body;
       }
       

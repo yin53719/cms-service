@@ -11,42 +11,7 @@ module.exports = app => {
         let endDate = data.endDate?`and a.end_date < '${data.endDate}' `:''; 
         let status = data.status?`and a.status =${data.status} `:''; 
         let isShow = data.isShow?`and a.is_show =${data.isShow} `:''; 
-        // AND DATE_FORMAT(t.publish_date,'%Y-%m-%d %T:%f:%s') > DATE_FORMAT('2018-03-13 23:59:59','%Y-%m-%d %T:%f:%s')
-         let sql=`SELECT a.id id,a.comment_number commentNumber,a.title as title,a.praise_number praiseNumber,a.browse_number browseNumber,a.create_by createBy,a.release_date releaseDate,b.name  
-                  ,a.is_show isShow,a.is_fullpush isFullpush
-                  FROM tt_community_news as a LEFT JOIN user_account b ON b.saic_user_id =a.user_id WHERE 
-                  a.title LIKE '%${title}%' ${startDate } ${endDate } ${isShow } ${userId} ${status} LIMIT ${page},${limit}`
-        let rows= new Array();
-                 
-         try {
-             rows= await app.mysql.query(sql);
-             for(var i=0;i<rows.length;i++){
-                rows[i].releaseDate=common.formatDateAll(rows[i].releaseDate);
-             }
-             app.logger.info(rows);
-             app.logger.error(sql);
-         } catch (error) {
-            app.logger.error('查询用户信息报错.....');
-            app.logger.error(error);
-            app.logger.error(sql);
-         }
-         let sql2 = `SELECT count(0)
-                    FROM tt_community_news as a WHERE 
-                    a.title LIKE '%${title}%' ${startDate } ${endDate } ${isShow } ${userId} ${status} `
-        
-        try {
-            let total = await app.mysql.query(sql2);
-            return {
-                data:{
-                    rows:rows,
-                    total:total[0].total
-                }
-                
-            };
-        } catch (error) {
-            app.logger.error(error)
-        }
-                    
+            
 
         
   

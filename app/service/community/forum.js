@@ -22,7 +22,7 @@ module.exports = app => {
     async queryListArticle(data){
         let name = data.name?`and (u.name LIKE '%${name}%' or u.nick_name like '%${name}%')`:'';
         let title = data.title || '';
-        let page=data.page-1 || 0 ;
+        let page=(data.page*1-1)*10 ;
         let limit=data.limit || 10;
         let blockId = data.blockId ?`and t.block_id=${data.blockId}`: '';
         let publishStatus = data.publishStatus?`and t.publish_status=${data.publishStatus}` :''

@@ -20,7 +20,7 @@ module.exports = app => {
     }
     async getListUser(data) {
         let articleRoleCode=data.articleRoleCode?`and ${data.articleRoleCode}`:'';
-        let page=data.page-1 || 0 ;
+        let page=(data.page*1-1)*10 ;
         let limit=data.limit || 10;
         let startDate = data.registerStartDate?`and a.register_date >'${data.registerStartDate}' `:''; 
         let endDate = data.registerEndDate?`and a.register_date < '${data.registerEndDate}' `:''; 

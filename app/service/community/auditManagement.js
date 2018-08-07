@@ -19,7 +19,7 @@ module.exports = app => {
         }
         
         
-        let page=data.page-1 || 0 ;
+        let page=(data.page*1-1)*10 ;
         let limit=data.limit || 10;
         let businessType = data.businessType ?`and t.business_type = ${data.businessType}`: '';
         let status = data.status?`and t.status = ${data.status}`:'';

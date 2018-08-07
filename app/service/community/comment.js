@@ -6,7 +6,7 @@ module.exports = app => {
        const businessId=query.businessId;
        const businessType =query.businessType;
        const limit=query.limit || 10;
-       const page =query.page-1;
+       let page=(data.page*1-1)*10 ;
 
        const sql =`select * from tt_community_comment t where t.business_id=${businessId} and 
                    t.business_type=${businessType} 
