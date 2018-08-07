@@ -6,19 +6,15 @@ module.exports = app => {
   const conn = app.mongooseDB.get('back');
 
   const UserSchema = new Schema({
-    id: { type: Number },
-    userId: { type: Number, unique: true },
+    userId: { type: Number},
     title: { type: String },
     newsSummary: { type: String },
-    content: { type: Number },
+    content: { type: String },
     titleImage: { type: String},
     releaseDate: { type: Date, default: Date.now },
     isShow: { type: Number, default: 0},
     isFullpush: { type: Number , default: 0},
     sort: { type: Number, default: 0 }
-  }, {
-    usePushEach: true,
-    timestamps: { createdAt: 'create_date', updatedAt: 'update_date' },
   });
-  return conn.model('News', UserSchema);
+  return conn.model('news', UserSchema);
 };

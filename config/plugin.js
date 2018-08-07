@@ -11,7 +11,7 @@ exports.cors = {
   package: 'egg-cors',
 };
 exports.mongoose = {
-  enable: false,
+  enable: true,
   package: 'egg-mongoose',
 };
 exports.jwt = {
