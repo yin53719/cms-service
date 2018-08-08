@@ -14,7 +14,10 @@ module.exports = app => {
     releaseDate: { type: Date, default: Date.now },
     isShow: { type: Number, default: 0},
     isFullpush: { type: Number , default: 0},
-    sort: { type: Number, default: 0 }
+    sort: { type: Number, default: 0 },
+    commentNumber:{type :Number,default:0},
+    praiseNumber:{type :Number,default:0},
+    browseNumber:{type :Number,default:0}
   });
   return conn.model('news', UserSchema);
 };
