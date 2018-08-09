@@ -12,6 +12,7 @@ module.exports = app => {
     content: { type: String },
     titleImage: { type: String},
     releaseDate: { type: Date, default: Date.now },
+    createDate: { type: Date, default: Date.now },
     isShow: { type: Number, default: 0},
     isFullpush: { type: Number , default: 0},
     sort: { type: Number, default: 0 },

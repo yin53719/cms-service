@@ -12,11 +12,27 @@ module.exports = app => {
                    t.business_type=${businessType} 
                    LIMIT ${page},${limit}
                   `;
+        
       
        try {
           const list= await app.mysql.query(sql)
-          app.logger.info(list);
-          app.logger.info(sql);
+
+          let lists = [];
+          for(var i=0;i<list.length;i++){
+            lists.push(lists[i].businessId)
+          }
+          const sql2 =`select * from tt_community_comment t where t.business_id in (${lists.join(',')}) and 
+                   t.business_type=${businessType}`;
+          const list2= await app.mysql.query(sql2)
+
+
+          for(var i=0;i<list.length;i++){
+            list[i]['level2List']=[];
+            for(var j=0;j<list2.length;j++){
+              list[i]['level2List'].push(list2[i]) 
+            }
+          }
+
           return {
             data:list
           }
