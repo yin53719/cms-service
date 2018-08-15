@@ -18,7 +18,8 @@ module.exports = app => {
     sort: { type: Number, default: 0 },
     commentNumber:{type :Number,default:0},
     praiseNumber:{type :Number,default:0},
-    browseNumber:{type :Number,default:0}
+    browseNumber:{type :Number,default:0},
+    contentType:{type :Number,default:0}
   });
   return conn.model('news', UserSchema);
 };

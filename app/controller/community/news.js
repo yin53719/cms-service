@@ -6,8 +6,12 @@ module.exports = app => {
     async queryListNews(ctx) {
       //资讯查询
       if(ctx.query.id){
-        const body=await app.service.community.news.queryListNewsOne(ctx.query.id);
-        ctx.body=body;
+        //const body=await app.service.community.news.queryListNewsOne(ctx.query.id);
+        const body=await app.model.News.findOne({_id:ctx.query.id});
+
+        ctx.body={
+          data:body
+        };
       }else{
         let data = ctx.request.body;
         let title=data.title || '';
@@ -32,8 +36,9 @@ module.exports = app => {
     }
     async insertNews(ctx) {
       //资讯新增
-      if(ctx.request.body.id){
-        const body=await ctx.service.community.news.updateNews(ctx.request.body);
+      if(ctx.request.body.createDate){
+        //const body=await ctx.service.community.news.updateNews(ctx.request.body);
+        const body=await app.model.News.update(ctx.request.body);
         ctx.body=body;
       }else{
         //const body=await ctx.service.community.news.insertNews(ctx.request.body);

@@ -36,6 +36,9 @@ module.exports = app => {
     async logout(ctx) {
       ctx.body='退出成功'
     }
+    async getWechatToken(){
+      return 'aaR4IAeXo1bwTQp8uSefRHjrDAIBY5l3'
+    }
   }
   return LoginController;
 };

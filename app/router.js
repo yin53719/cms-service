@@ -28,8 +28,10 @@ module.exports = app => {
   app.post('/api/upload/ue','uploadUe.image');
   app.post('/api/cmyManage/sys/uploadFile','uploadUe.image');
   app.post('/api/cmyManage/sys/ue/upload','uploadUe.image');
-  
 
+  app.get('/api/getWechatToken','login.getWechatToken');
+  
+  
   //论坛路由
   require('./router/forum')(app);
   //资讯路由
