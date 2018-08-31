@@ -1,7 +1,5 @@
 'use strict';
 
-const https = require('axios')
-const jsSHA = require('jssha')
 const common = require('../../libs/common');
 module.exports = app => {
   class weixinService extends app.Service {

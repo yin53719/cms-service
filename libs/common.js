@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 const fs = require('fs');
-const https = require('axios')
+const axios = require('axios')
 module.exports = {
   MD5_SUFFIX: 'FDSW$t34tregt5tO&$(#RHuyoyiUYE*&OI$HRLuy87odlfh是个风格热腾腾)',
   md5: str => {
@@ -67,15 +67,19 @@ module.exports = {
   },
   getAccToken(appid,secret){
     return new Promise((resolve, reject) => {
-      https.get('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+ appid +'&secret='+secret).then((res)=>{
+      axios.get('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+ appid +'&secret='+secret).then((res)=>{
         resolve(res.data);
+       }).catch((res)=>{
+          reject(res)
        })
     });
   },
   getticket(access_token){
     return new Promise((resolve, reject) => {
-      https.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+access_token+'&type=jsapi').then((res)=>{
+      axios.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+access_token+'&type=jsapi').then((res)=>{
         resolve(res.data);
+       }).catch((res)=>{
+        reject(res)
        })
     });
   }
