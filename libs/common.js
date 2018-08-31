@@ -45,7 +45,7 @@ module.exports = {
         var hh=d.getHours()
         var mm=d.getMinutes()
         let ss=d.getSeconds()
-         return year+ '-' + month + '-' + day +' ' + hh +':' + mm +':' + ss;
+        return year+ '-' + month + '-' + day +' ' + hh +':' + mm +':' + ss;
   },
   getUrlparms(url, key) {
     const localhost_url = url.split('?')[1];
@@ -68,6 +68,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       axios.get('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+ appid +'&secret='+secret).then((res)=>{
          app.logger.info('调用微信接口获取access_token成功')
+         app.logger.info(res.data)
          resolve(res.data);
        }).catch((res)=>{
           app.logger.error('调用微信接口获取access_token出错-------------------------')
@@ -83,6 +84,7 @@ module.exports = {
          resolve(res.data);
        }).catch((res)=>{
         app.logger.error('调用微信接口获取getticket出错-------------------------')
+        app.logger.info(res.data)
         app.logger.error(res)
         reject(res)
        })
