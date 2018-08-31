@@ -81,10 +81,10 @@ module.exports = {
     return new Promise((resolve, reject) => {
       axios.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+access_token+'&type=jsapi').then((res)=>{
          app.logger.info('调用微信接口获取getticket成功')
+         app.logger.info(res.data)
          resolve(res.data);
        }).catch((res)=>{
         app.logger.error('调用微信接口获取getticket出错-------------------------')
-        app.logger.info(res.data)
         app.logger.error(res)
         reject(res)
        })
