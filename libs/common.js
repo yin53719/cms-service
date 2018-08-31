@@ -29,7 +29,6 @@ module.exports = {
       let size = null;
       fs.stat(filePath, (err, stats) => {
         size = stats.size;
-        console.log(filePath);
         resolve(size);
       });
     });
@@ -65,20 +64,26 @@ module.exports = {
     const data = obj[key];
     return data;
   },
-  getAccToken(appid,secret){
+  getAccToken(appid,secret,app){
     return new Promise((resolve, reject) => {
       axios.get('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+ appid +'&secret='+secret).then((res)=>{
-        resolve(res.data);
+         app.logger.info('调用微信接口获取access_token成功')
+         resolve(res.data);
        }).catch((res)=>{
+          app.logger.error('调用微信接口获取access_token出错-------------------------')
+          app.logger.error(res)
           reject(res)
        })
     });
   },
-  getticket(access_token){
+  getticket(access_token,app){
     return new Promise((resolve, reject) => {
       axios.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='+access_token+'&type=jsapi').then((res)=>{
-        resolve(res.data);
+         app.logger.info('调用微信接口获取getticket成功')
+         resolve(res.data);
        }).catch((res)=>{
+        app.logger.error('调用微信接口获取getticket出错-------------------------')
+        app.logger.error(res)
         reject(res)
        })
     });

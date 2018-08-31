@@ -11,8 +11,8 @@ module.exports = app => {
         const createNonceStr = Math.random().toString(36).substr(2, 15);
         // 时间
         const createTimeStamp =  parseInt(new Date().getTime() / 1000) + '';
-        const AccToken = await common.getAccToken(appid,secret)
-        const getticket = await common.getticket(AccToken.access_token)
+        const AccToken = await common.getAccToken(appid,secret,app)
+        const getticket = await common.getticket(AccToken.access_token,app)
       
         var calcSignature =  (ticket, noncestr, ts, url)=> {
             var str = 'jsapi_ticket=' + ticket + '&noncestr=' + noncestr + '&timestamp='+ ts +'&url=' + url;
