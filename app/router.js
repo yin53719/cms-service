@@ -4,6 +4,7 @@
  */
 module.exports = app => {
   app.get('/','home.index');
+  app.get('/api/wx/wxsdk','home.weixin');
   app.post('/api/login','login.index');//登录
   app.post('/api/register','login.register');//注册
   app.get('/api/logout','login.logout');//注册

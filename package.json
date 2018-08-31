@@ -4,6 +4,7 @@
   "description": "基于eggjs的node service，用来做前后端分离的后台管理系统的后端服务。",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "egg": "^2.2.1",
     "egg-cors": "^2.0.0",
     "egg-jwt": "^3.0.0",
@@ -12,6 +13,8 @@
     "egg-scripts": "^2.5.0",
     "egg-static": "^2.1.1",
     "egg-view-ejs": "^2.0.0",
+    "https": "^1.0.0",
+    "jssha": "^2.3.1",
     "nodemailer": "^4.6.7",
     "request": "^2.87.0",
     "xml2js": "^0.4.19"

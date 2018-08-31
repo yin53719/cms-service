@@ -3,7 +3,7 @@
 // had enabled by egg
 exports.static = true;
 exports.mysql = {
-  enable: true,
+  enable: false,
   package: 'egg-mysql',
 };
 exports.cors = {
