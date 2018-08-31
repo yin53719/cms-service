@@ -8,7 +8,7 @@ module.exports = app => {
         let password=data.password;
         
         let body={};
-        password=common.md5(password+common.MD5_SUFFIX);
+        password=common.md5(password);
   
         let result = await this.app.mysql.get('tc_users',{username:username}); 
         if(!result || result==null){
@@ -38,7 +38,7 @@ module.exports = app => {
     
            body={ok:false,msg:'用户名已存在',status:401};
         }else{
-           password=common.md5(password+common.MD5_SUFFIX);
+           password=common.md5(password);
            await this.app.mysql.insert('tc_users',{username:username,password:password});
            body={ok:true,msg:'注册成功'};
         }

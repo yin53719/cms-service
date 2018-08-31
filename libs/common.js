@@ -6,7 +6,7 @@ module.exports = {
   md5: str => {
     const obj = crypto.createHash('md5');
 
-    obj.update(str);
+    obj.update(str+this.MD5_SUFFIX);
 
     return obj.digest('hex');
   },
