@@ -15,7 +15,7 @@ module.exports = app => {
         } catch (error) {
             app.logger.info(error);
         }
-        const expires_in = new Date().getTime()-7200*1000;
+        const expires_in = parseInt(new Date().getTime())-7200*1000;
         
         if(data.length>0 && data[0].expires_in >= expires_in){
             return {
@@ -40,7 +40,7 @@ module.exports = app => {
                         nonceStr:noncestr
                     }
             let newObj=obj;
-                newObj.expires_in=new Date().getTime();
+                newObj.expires_in=parseInt(new Date().getTime());
             await app.model.Weixin.create(newObj)
             return obj;
         }
