@@ -22,22 +22,22 @@ module.exports = app => {
                 signature:data[0].signature,
                 appId:data[0].appId,
                 timestamp:data[0].timestamp,
-                nonceStr:data[0].noncestr
+                nonceStr:data[0].nonceStr
             };
         }else{
             const AccToken = await common.getAccToken(appId,secret,app)
             const getticket = await common.getticket(AccToken.access_token,app)
             //随机数
-            const noncestr = Math.random().toString(36).substr(2, 15);
+            const nonceStr = Math.random().toString(36).substr(2, 15);
             // 时间
             const timestamp =  parseInt(new Date().getTime() / 1000) + '';
-            const str = 'jsapi_ticket=' + getticket.ticket + '&noncestr=' + noncestr + '&timestamp='+ timestamp +'&url=' + url;
+            const str = 'jsapi_ticket=' + getticket.ticket + '&noncestr=' + nonceStr + '&timestamp='+ timestamp +'&url=' + url;
             const signature = common.sha('sha1',str);
             const obj={
                         signature:signature,
                         appId:appId,
                         timestamp:timestamp,
-                        nonceStr:noncestr
+                        nonceStr:nonceStr
                     }
             let newObj=obj;
                 newObj.expires_in=parseInt(new Date().getTime());
