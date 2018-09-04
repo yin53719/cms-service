@@ -22,10 +22,11 @@ module.exports = appInfo => {
         enable:false,
       }
     },
-    static:{
-      prefix: '/public/',
-      dir:path.join(appInfo.baseDir, 'app/public')
-    },
+    //默认配置
+    // static:{
+    //   prefix: '/public/',
+    //   dir:path.join(appInfo.baseDir, 'app/public')
+    // },
     cors:{
       origin: '*',
       allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'

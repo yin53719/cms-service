@@ -1,7 +1,8 @@
 'use strict';
 
 // had enabled by egg
-exports.static = true;
+//框架默认开启静态资源
+// exports.static = true;
 exports.mysql = {
   enable: false,
   package: 'egg-mysql',
