@@ -11,9 +11,10 @@ module.exports = app => {
         try {
             data= await app.model.Weixin.find({appId:appId})
             app.logger.info(data);
-            app.logger.info('=====================');
+            app.logger.info('=========查新存储信息ok============');
         } catch (error) {
-            app.logger.info(error);
+            app.logger.error(error);
+            app.logger.error('=========查新存储信息fail============');
         }
         const expires_in = new Date().getTime()-7200*1000;
         

@@ -12,14 +12,7 @@ module.exports = appInfo => {
       secret: "123456"
     },
     logger: {
-      consoleLevel: 'INFO',
-      file:path.join(appInfo.baseDir, 'logs', appInfo.name, 'egg-web.log'),
-    },
-    logrotator: {
-      filesRotateBySize: [
-        path.join(appInfo.root, 'logs', appInfo.name, 'egg-web.log'),
-      ],
-      maxFileSize: 2 * 1024 * 1024 * 1024,
+      consoleLevel: 'INFO'
     },
     security: {
       xframe:{
